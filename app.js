@@ -2,7 +2,7 @@
 /* Logenplatz – persönliches Event-Tagebuch als installierbare Web-App.
    Alle Daten liegen lokal im Browser (IndexedDB). Backup über Einstellungen. */
 
-const APP_VERSION = '1.0.0';
+const APP_VERSION = '1.0.1';
 
 /* ================= Helpers ================= */
 const $ = (s, r = document) => r.querySelector(s);
@@ -483,7 +483,7 @@ function editVenue(venue, { prefill = '' } = {}) {
 /* ---------- Karte: Position wählen ---------- */
 const LEAFLET_JS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
 const LEAFLET_CSS = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
-const TILE_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a>';
+const TILE_ATTR = '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap-Mitwirkende</a>';
 let leafletP = null;
 function loadLeaflet() {
   if (window.L) return Promise.resolve(window.L);
@@ -499,8 +499,10 @@ function loadLeaflet() {
   return leafletP;
 }
 function isDark() { const t = document.documentElement.dataset.theme; return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; }
-const tileURL = () => (isDark() ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' : 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png');
-function addTiles(L, map) { L.tileLayer(tileURL(), { attribution: TILE_ATTR, subdomains: 'abcd', maxZoom: 19 }).addTo(map); }
+// Kartenkacheln von OpenStreetMap (ohne API-Schlüssel). Dunkles Design per CSS-Filter.
+function addTiles(L, map) {
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: TILE_ATTR, maxZoom: 19, className: 'osm-tiles' }).addTo(map);
+}
 
 function pickOnMap(lat, lon) {
   return new Promise((resolve) => {
@@ -1265,7 +1267,7 @@ async function viewSettings() {
         <div id="wipewrap"><button class="btn danger block" type="button" id="wipe">${ic('trash')} Alle Daten auf diesem Gerät löschen</button></div>
       </section>
       <section class="stack small muted" style="padding-bottom:8px">
-        <p>Logenplatz ${APP_VERSION}. Karten © OpenStreetMap-Mitwirkende und CARTO. Ortssuche über OpenStreetMap Nominatim.</p>
+        <p>Logenplatz ${APP_VERSION}. Karten © OpenStreetMap-Mitwirkende. Ortssuche über OpenStreetMap Nominatim.</p>
       </section>
     </div>`;
   $('#bk').addEventListener('click', () => back('chronik'));

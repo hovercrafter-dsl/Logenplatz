@@ -362,6 +362,8 @@ label.btn input[type=file], .file-hidden { position: absolute; width: 1px; heigh
 .pop-l a { text-decoration: none; display: flex; gap: 8px; font-size: 13.5px; }
 .pop-l a .mono { color: var(--ink-2); font-size: 12px; flex: none; }
 .pop-more { font-weight: 600; color: var(--accent-text) !important; text-decoration: none; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .osm-tiles { filter: invert(1) hue-rotate(180deg) brightness(.92) contrast(.88) saturate(.7); } }
+:root[data-theme="dark"] .osm-tiles { filter: invert(1) hue-rotate(180deg) brightness(.92) contrast(.88) saturate(.7); }
 .mapsmall { height: 300px; border-radius: var(--r); overflow: hidden; background: var(--surface-2); position: relative; }
 .mapsmall .map { position: absolute; inset: 0; }
 

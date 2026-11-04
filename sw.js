@@ -1,5 +1,5 @@
 /* Logenplatz Service Worker: App offline verfügbar machen */
-const VERSION = 'logenplatz-v1.0.0';
+const VERSION = 'logenplatz-v1.0.1';
 const SHELL = ['./', './index.html', './styles.css', './app.js', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 const LIB_HOSTS = ['unpkg.com', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 
