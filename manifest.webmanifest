@@ -1,0 +1,23 @@
+{
+  "name": "Logenplatz",
+  "short_name": "Logenplatz",
+  "description": "Deine Konzerte, Musicals, Sportevents und Festivals mit Fotos, Sitzplätzen, Statistik und Weltkarte.",
+  "lang": "de-AT",
+  "id": "./",
+  "start_url": "./#chronik",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0E1020",
+  "theme_color": "#0E1020",
+  "categories": ["entertainment", "lifestyle"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Neues Event", "short_name": "Neu", "url": "./#neu", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Weltkarte", "short_name": "Karte", "url": "./#karte", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ]
+}
